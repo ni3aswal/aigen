@@ -25,6 +25,7 @@ class CompanyController extends Controller
       return  view('Company.index',compact('campanies'));
     }
 	
+	
 		//redirect to add company
     public function create()
     {

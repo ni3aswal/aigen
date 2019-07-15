@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Company;
 use App\Employee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeRequest;
-
+use Illuminate\Support\Facades\Input;
 class EmployeeController extends Controller
 {
 
@@ -19,9 +18,29 @@ class EmployeeController extends Controller
 	//get all the companies and display
     public function index()
     {
-       $employes = Employee::paginate(10);
+        $employes = Employee::paginate(10);
         return  view('Employee.index',compact('employes'));
     }
+	
+	public function search(Request $request)
+    {
+	$q = $request->q; 
+ if($q != ""){
+$company = Company::where('name', '=',$q )->paginate (5)->setPath ( '' );
+if (count ( $company ) > 0)
+{
+ $users = Employee::where('company_id', '=', $company[0]->id  )->paginate (5)->setPath ( '' );
+ $pagination = $users->appends ( array (
+    'q' => Input::get( 'q' ) 
+  ) );
+ if (count ( $users ) > 0)
+      return view('welcome',["users"=>$users]);
+ }
+
+ }
+  return view('welcome')->with('message','No Details found. Try to search again !' );
+	}
+	
 	
 //redirect to add company
     public function create()

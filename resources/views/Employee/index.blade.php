@@ -18,6 +18,17 @@
 @endif					   
                 <div class="card-body">
                     	  
+        <form action="{{route('search') }}" method="POST" role="search">
+            {{ csrf_field() }}
+            <div class="input-group">
+                <input id="q" type="text" class="form-control" name="q"
+                    placeholder="Search users"> <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search">Search</span>
+                    </button>
+                </span>
+            </div>
+        </form> 	  
 <div class="container">           
   <table class="table table-hover">
       <thead>

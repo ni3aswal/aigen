@@ -26,3 +26,5 @@ Auth::routes();
 //instace of controllers taken
 Route::resource('companies', 'CompanyController'); 
 Route::resource('employes', 'EmployeeController');
+
+Route::any( '/search', 'EmployeeController@search')->name('search');
