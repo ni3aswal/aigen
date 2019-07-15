@@ -35,7 +35,7 @@ class EmployeeController extends Controller
     public function store(EmployeeRequest $request)
     {
         Employee::create($request->all());
-        return back()->with('success', 'You have just created one item');
+        return back()->with('successemployee', 'Employee Added');
       
     }
 	
@@ -66,7 +66,7 @@ class EmployeeController extends Controller
         $employee->save();
         
         
-        return redirect()->route('employes.index');
+        return redirect()->route('employes.index')->with('updatedemployee', 'Employee Updated');;
     }
 	
 	//delete data 

@@ -24,6 +24,7 @@ class CompanyController extends Controller
         $campanies = Company::paginate(10);
       return  view('Company.index',compact('campanies'));
     }
+	
 		//redirect to add company
     public function create()
     {
@@ -48,11 +49,12 @@ class CompanyController extends Controller
           // $img = Image::make($image->getRealPath());
 
              /* in STORAGE FOLDER*/ 
-          $formInput['logo']=Storage::disk('local')->put('public', $image);
+          $formInput['logo']=Storage::disk('local')->put('nitin', $image);
         }
 
         Company::create($formInput);
-        return back()->with('success', 'You have just created one item');
+		
+        return back()->with('successcompany', 'Company Added');
     }
  	//redirect to update page with company data
 	public function edit($id)
@@ -80,7 +82,7 @@ class CompanyController extends Controller
     $companyEdit->email = $request->email;
     $companyEdit->website = $request->website;
     $companyEdit->save();
-    return redirect()->route('companies.index');
+    return redirect()->route('companies.index')->with('updatedcompany', 'Company Updated');
     }
 
 	//delete data 

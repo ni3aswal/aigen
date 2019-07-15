@@ -16,9 +16,9 @@ class Companies extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');      
             $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('logo')->nullable();
-            $table->string('website')->nullable();
+            $table->string('email')->default('na@na.com');
+            $table->string('logo')->default('not provided');
+            $table->string('website')->default('https://www.na.com');
 			$table->timestamps();
         });
     }

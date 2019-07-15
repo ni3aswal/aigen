@@ -16,12 +16,4 @@ class Company extends Model
 		'website'
     ];
     
-    public function employee()
-	{
-		return $this->hasMany(Employee::class,'id','name');
-	}
-	public function scopeTrending($query)
-	{
-		return $query->orderBy('id','desc')->get();
-	}
 }

@@ -20,8 +20,8 @@ class Employees extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->integer('company_id')->unsigned();
-			$table->string('email')->nullable();
-            $table->string('phone_number')->nullable();
+			$table->string('email')->default('na@na.com');
+            $table->string('phone_number')->default('0000000000');;
 			$table->timestamps();
             $table->foreign('company_id')->references('id')->on('companies');
         });
